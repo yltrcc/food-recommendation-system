@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yltrcc.frs.mapper.TbFoodMapper">
+
+	<resultMap type="com.yltrcc.frs.entity.TbFood" id="AllUserMap">
+		<id column="food_id" jdbcType="INTEGER" property="food_id" />
+		<result column="add_time" jdbcType="DATE" property="add_time"/>
+		<result column="canteen" jdbcType="VARCHAR" property="canteen"/>
+		<result column="food_cal" jdbcType="VARCHAR" property="food_cal"/>
+		<result column="food_name" jdbcType="VARCHAR" property="food_name"/>
+		<result column="img" jdbcType="VARCHAR" property="img"/>
+		<result column="info" jdbcType="VARCHAR" property="info"/>
+		<result column="location" jdbcType="VARCHAR" property="location"/>
+		<result column="recorde" jdbcType="BIGINT" property="recorde"/>
+		<result column="taste" jdbcType="VARCHAR" property="taste"/>
+	</resultMap>
+	
+	<resultMap type="com.yltrcc.frs.entity.TbFood" id="AllHouseMap">
+		<id column="h_id" jdbcType="INTEGER" property="hID" />
+		<result column="house_desc" jdbcType="VARCHAR" property="houseDesc"/>
+		<result column="house_model" jdbcType="VARCHAR" property="houseModel"/>
+		<result column="house_area" jdbcType="VARCHAR" property="houseArea"/>
+		<result column="house_floor" jdbcType="VARCHAR" property="houseFloor"/>
+		<result column="house_type" jdbcType="VARCHAR" property="houseType"/>
+		<result column="house_price" jdbcType="VARCHAR" property="housePrice"/>
+		<result column="house_address" jdbcType="VARCHAR" property="houseAddress"/>
+		<result column="house_image" jdbcType="VARCHAR" property="houseImage"/>
+		<result column="community_name" jdbcType="VARCHAR" property="communityName"/>
+		<result column="house_linkman" jdbcType="VARCHAR" property="houseLinkMan"/>
+		<result column="house_oriented" jdbcType="VARCHAR" property="houseOriented"/>
+		<result column="house_detailes_img" jdbcType="VARCHAR" property="houseDetailsImg"/>
+		<result column="publisher" jdbcType="VARCHAR" property="publisher"/>
+		<result column="publish_time" jdbcType="VARCHAR" property="publishTime"/>
+	</resultMap>
+	
+	<!-- 管理员登录 -->
+	<select id="query" resultMap="AllUserMap" parameterType="com.yltrcc.frs.entity.FoodRequest">
+		SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, img, info, canteen
+		FROM tb_food
+		<if test=' canteen != null'>
+			where canteen = #{canteen}
+		</if>
+		limit #{page_num},#{page_size}
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="queryCount" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.entity.FoodRequest">
+		SELECT count(*)
+		FROM tb_food
+		<if test=' canteen != null'>
+			where canteen = #{canteen}
+		</if>
+	</select>
+
+
+</mapper>
