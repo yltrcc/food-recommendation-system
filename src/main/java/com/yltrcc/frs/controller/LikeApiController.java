@@ -1,17 +1,14 @@
 package com.yltrcc.frs.controller;
 
-import com.yltrcc.frs.entity.FoodRequest;
-import com.yltrcc.frs.entity.TbFood;
-import com.yltrcc.frs.entity.base.ApiResponse;
-import com.yltrcc.frs.entity.base.content;
-import com.yltrcc.frs.service.ITbFoodService;
+import com.yltrcc.frs.module.LikeRequest;
+import com.yltrcc.frs.module.entity.TbFood;
+import com.yltrcc.frs.module.ApiResponse;
+import com.yltrcc.frs.module.entity.content;
+import com.yltrcc.frs.service.ITbLikeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.w3c.dom.stylesheets.LinkStyle;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,22 +21,21 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/api")
-public class OpenApiController {
+public class LikeApiController {
 
     @Autowired
-    private ITbFoodService tbFoodService;
+    private ITbLikeService tbLikeService;
 
-    @RequestMapping("/getFood")
-    public ApiResponse<TbFood> getFood( FoodRequest foodRequest) {
+    @RequestMapping("/api/getLike")
+    public ApiResponse<TbFood> getLike(LikeRequest likeRequest) {
 
-        int page_size = foodRequest.getPage_size();
-        int page_num = foodRequest.getPage_num();
+        int page_size = likeRequest.getPage_size();
+        int page_num = likeRequest.getPage_num();
 
-        List<TbFood> list = tbFoodService.query(foodRequest);
+        List<TbFood> list = tbLikeService.query(likeRequest);
 
         //查询总记录数
-        int total_count = tbFoodService.queryCount(foodRequest);
+        int total_count = tbLikeService.queryCount(likeRequest);
         int total_page = total_count / page_size;
         total_page = (int) Math.floor(total_page);
         if (total_count % page_size != 0) {
@@ -56,4 +52,5 @@ public class OpenApiController {
 
         return response;
     }
+
 }

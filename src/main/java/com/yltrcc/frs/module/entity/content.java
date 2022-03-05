@@ -1,4 +1,4 @@
-package com.yltrcc.frs.entity.base;
+package com.yltrcc.frs.module.entity;
 
 import java.util.List;
 

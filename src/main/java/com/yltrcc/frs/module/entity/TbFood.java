@@ -1,4 +1,4 @@
-package com.yltrcc.frs.entity;
+package com.yltrcc.frs.module.entity;
 
 import java.sql.Date;
 

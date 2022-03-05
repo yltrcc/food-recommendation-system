@@ -1,6 +1,4 @@
-package com.yltrcc.frs.entity;
-
-import com.yltrcc.frs.entity.base.ApiRequest;
+package com.yltrcc.frs.module;
 
 /**
  * Package: com.yltrcc.frs.entity

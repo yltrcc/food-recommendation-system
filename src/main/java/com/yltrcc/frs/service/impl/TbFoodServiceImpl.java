@@ -1,7 +1,7 @@
 package com.yltrcc.frs.service.impl;
 
-import com.yltrcc.frs.entity.FoodRequest;
-import com.yltrcc.frs.entity.TbFood;
+import com.yltrcc.frs.module.FoodRequest;
+import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.mapper.TbFoodMapper;
 import com.yltrcc.frs.service.ITbFoodService;
 import org.springframework.beans.factory.annotation.Autowired;

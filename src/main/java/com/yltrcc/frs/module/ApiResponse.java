@@ -1,6 +1,6 @@
-package com.yltrcc.frs.entity.base;
+package com.yltrcc.frs.module;
 
-import java.util.List;
+import com.yltrcc.frs.module.entity.content;
 
 /**
  * Package: com.yltrcc.blog.api

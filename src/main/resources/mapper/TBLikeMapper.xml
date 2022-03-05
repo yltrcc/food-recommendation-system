@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yltrcc.frs.mapper.TbLikeMapper">
+
+	<resultMap type="com.yltrcc.frs.module.entity.TbFood" id="AllMap">
+		<id column="food_id" jdbcType="INTEGER" property="food_id" />
+		<result column="add_time" jdbcType="DATE" property="add_time"/>
+		<result column="canteen" jdbcType="VARCHAR" property="canteen"/>
+		<result column="food_cal" jdbcType="VARCHAR" property="food_cal"/>
+		<result column="food_name" jdbcType="VARCHAR" property="food_name"/>
+		<result column="img" jdbcType="VARCHAR" property="img"/>
+		<result column="info" jdbcType="VARCHAR" property="info"/>
+		<result column="location" jdbcType="VARCHAR" property="location"/>
+		<result column="recorde" jdbcType="BIGINT" property="recorde"/>
+		<result column="taste" jdbcType="VARCHAR" property="taste"/>
+	</resultMap>
+
+	
+	<!-- 管理员登录 -->
+	<select id="query" resultMap="AllMap" parameterType="com.yltrcc.frs.module.LikeRequest">
+		SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, img, info, canteen
+		FROM tb_food
+		where food_id in ( select DISTINCT food_id from tb_like where user_id = #{user_id})
+		limit #{page_num},#{page_size}
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="queryCount" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.LikeRequest">
+		select count(food_id) as num
+		from tb_food
+		where food_id in ( select DISTINCT food_id from tb_like where user_id = #{user_id})
+	</select>
+
+
+</mapper>

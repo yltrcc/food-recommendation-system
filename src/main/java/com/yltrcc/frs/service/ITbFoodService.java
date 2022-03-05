@@ -1,7 +1,7 @@
 package com.yltrcc.frs.service;
 
-import com.yltrcc.frs.entity.FoodRequest;
-import com.yltrcc.frs.entity.TbFood;
+import com.yltrcc.frs.module.FoodRequest;
+import com.yltrcc.frs.module.entity.TbFood;
 
 import java.util.List;
 

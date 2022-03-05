@@ -1,0 +1,24 @@
+package com.yltrcc.frs.mapper;
+
+import com.yltrcc.frs.module.entity.TbUser;
+import com.yltrcc.frs.module.UserRequest;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+/**
+ * Package: com.yltrcc.frs.mapper
+ * Date：2022-03-04
+ * Time：20:55
+ * Description：TODO
+ *
+ * @author yltrcc
+ * @version 1.0
+ */
+@Mapper
+public interface TbUserMapper {
+
+    List<TbUser> query(UserRequest userRequest);
+
+    int queryCount(UserRequest userRequest);
+}

@@ -1,4 +1,4 @@
-package com.yltrcc.frs.entity.base;
+package com.yltrcc.frs.module;
 
 /**
  * Package: com.yltrcc.blog.api
