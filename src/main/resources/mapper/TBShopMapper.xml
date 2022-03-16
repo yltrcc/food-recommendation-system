@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yltrcc.frs.mapper.TbShopMapper">
+
+	<resultMap type="com.yltrcc.frs.module.entity.TbShop" id="AllMap">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="shop_name" jdbcType="VARCHAR" property="shopName"/>
+		<result column="shop_desc" jdbcType="VARCHAR" property="shopDesc"/>
+		<result column="shop_sales" jdbcType="VARCHAR" property="shopSales"/>
+		<result column="shop_url" jdbcType="VARCHAR" property="shopUrl"/>
+		<result column="location" jdbcType="VARCHAR" property="location"/>
+		<result column="like_count" jdbcType="INTEGER" property="likeCount"/>
+		<result column="collect_count" jdbcType="INTEGER" property="collectCount"/>
+		<result column="comment_count" jdbcType="INTEGER" property="commentCount"/>
+		<result column="canteen" jdbcType="VARCHAR" property="canteen"/>
+		<result column="notice" jdbcType="VARCHAR" property="notice"/>
+
+	</resultMap>
+
+
+	<!-- 管理员登录 -->
+	<select id="query" resultMap="AllMap" parameterType="com.yltrcc.frs.module.ShopRequest">
+		SELECT *
+		FROM tb_shop
+		<if test=' canteen != null'>
+			where canteen = #{canteen}
+		</if>
+		limit #{page_num},#{page_size}
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="queryCount" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.ShopRequest">
+		SELECT count(*)
+		FROM tb_shop
+		<if test=' canteen != null'>
+			where canteen = #{canteen}
+		</if>
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="getShopById" resultMap="AllMap" parameterType="com.yltrcc.frs.module.ShopRequest">
+		SELECT *
+		FROM tb_shop
+		<if test=' shopId != null'>
+			where id = #{shopId}
+		</if>
+	</select>
+
+
+</mapper>

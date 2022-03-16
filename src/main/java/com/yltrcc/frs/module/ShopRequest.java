@@ -9,7 +9,7 @@ package com.yltrcc.frs.module;
  * @author yltrcc
  * @version 1.0
  */
-public class FoodRequest extends ApiRequest {
+public class ShopRequest extends ApiRequest {
 
     /**
      * 餐厅
@@ -18,19 +18,19 @@ public class FoodRequest extends ApiRequest {
 
     private Long shopId;
 
-    public Long getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(Long shopId) {
-        this.shopId = shopId;
-    }
-
     public String getCanteen() {
         return canteen;
     }
 
     public void setCanteen(String canteen) {
         this.canteen = canteen;
+    }
+
+    public Long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
     }
 }

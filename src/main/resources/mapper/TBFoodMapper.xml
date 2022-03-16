@@ -40,6 +40,9 @@
 		<if test=' canteen != null'>
 			where canteen = #{canteen}
 		</if>
+		<if test=' shopId != null'>
+			where shop_id = #{shopId}
+		</if>
 		limit #{page_num},#{page_size}
 	</select>
 
@@ -49,6 +52,9 @@
 		FROM tb_food
 		<if test=' canteen != null'>
 			where canteen = #{canteen}
+		</if>
+		<if test=' shopId != null'>
+			where shop_id = #{shopId}
 		</if>
 	</select>
 
