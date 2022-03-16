@@ -75,4 +75,19 @@ public class ShopApiController {
 
         return response;
     }
+
+    @RequestMapping("/updateShopById")
+    public ApiResponse<TbShop> updateShopById(ShopRequest shopRequest) {
+
+
+        tbShopService.updateShopById(shopRequest);
+
+
+        ArrayList<TbShop> list = new ArrayList<TbShop>();
+        content<TbShop> content = new content<>(list);
+        ApiResponse<TbShop> response = new ApiResponse<TbShop>(content);
+        response.setSuccess(true);
+
+        return response;
+    }
 }

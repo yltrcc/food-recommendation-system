@@ -18,6 +18,16 @@ public class ShopRequest extends ApiRequest {
 
     private Long shopId;
 
+    private String notice;
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
     public String getCanteen() {
         return canteen;
     }

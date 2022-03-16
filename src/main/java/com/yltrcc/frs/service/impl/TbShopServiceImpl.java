@@ -47,5 +47,10 @@ public class TbShopServiceImpl implements ITbShopService {
         return shopMapper.getShopById(shopRequest);
     }
 
+    @Override
+    public void updateShopById(ShopRequest shopRequest) {
+         shopMapper.updateShopById(shopRequest);
+    }
+
 
 }

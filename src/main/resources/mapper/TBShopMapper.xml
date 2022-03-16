@@ -46,5 +46,18 @@
 		</if>
 	</select>
 
+	<!-- 管理员登录 -->
+	<update id="updateShopById" parameterType="com.yltrcc.frs.module.ShopRequest">
+		UPDATE tb_shop
+		<set>
+			<if test=' notice != null'>
+				notice = #{notice,jdbcType=VARCHAR},
+			</if>
+		</set>
+
+		<if test=' shopId != null'>
+			where id = #{shopId}
+		</if>
+	</update>
 
 </mapper>
