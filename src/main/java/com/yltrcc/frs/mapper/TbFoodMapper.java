@@ -13,4 +13,10 @@ public interface TbFoodMapper {
 	List<TbFood> query(FoodRequest foodRequest);
 
 	int queryCount(FoodRequest foodRequest);
+
+    void saveFood(TbFood tbFood);
+
+	void updateFoodById(TbFood tbFood);
+
+	void deleteFoodById(TbFood tbFood);
 }

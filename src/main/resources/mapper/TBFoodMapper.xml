@@ -58,5 +58,58 @@
 		</if>
 	</select>
 
+	<insert id="saveFood" parameterType="com.yltrcc.frs.module.entity.TbFood" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            tb_food ( food_name, food_cal,taste, location, recorde,add_time,user_id,img,
+            info,like_count,collect_count,comment_count,shop_id,price,category_id)
+        values
+            (
+				#{food_name,jdbcType=VARCHAR}, #{food_cal,jdbcType=VARCHAR},
+				#{taste,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{recorde,jdbcType=VARCHAR},
+				#{add_time,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR},
+				#{likeCount,jdbcType=INTEGER}, #{collectCount,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER},
+				#{shopId,jdbcType=INTEGER}, #{price,jdbcType=INTEGER}, #{category_id,jdbcType=INTEGER}
+            )
+    </insert>
+
+
+	<update id="updateFoodById" parameterType="com.yltrcc.frs.module.entity.TbFood">
+		UPDATE tb_food
+		<set>
+			<if test=' food_name != null'>
+				food_name = #{food_name,jdbcType=VARCHAR},
+			</if>
+			<if test=' food_cal != null'>
+				food_cal = #{food_cal,jdbcType=VARCHAR},
+			</if>
+			<if test=' taste != null'>
+				taste = #{taste,jdbcType=VARCHAR},
+			</if>
+			<if test=' location != null'>
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test=' recorde != null'>
+				recorde = #{recorde,jdbcType=VARCHAR},
+			</if>
+			<if test=' img != null'>
+				img = #{img,jdbcType=VARCHAR},
+			</if>
+			<if test=' info != null'>
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test=' price != null'>
+				price = #{price,jdbcType=VARCHAR},
+			</if>
+		</set>
+
+		<if test=' food_id != null'>
+			where food_id = #{food_id}
+		</if>
+	</update>
+
+
+	<delete id="deleteFoodById" parameterType="com.yltrcc.frs.module.entity.TbFood" flushCache="true" statementType="PREPARED" timeout="20">
+		delete from tb_food where food_id = #{food_id}
+	</delete>
 
 </mapper>

@@ -35,4 +35,19 @@ public class TbFoodServiceImpl  implements ITbFoodService {
     public int queryCount(FoodRequest foodRequest) {
         return foodMapper.queryCount(foodRequest);
     }
+
+    @Override
+    public void saveFood(TbFood tbFood) {
+        foodMapper.saveFood(tbFood);
+    }
+
+    @Override
+    public void updateFoodById(TbFood tbFood) {
+        foodMapper.updateFoodById(tbFood);
+    }
+
+    @Override
+    public void deleteFoodById(TbFood tbFood) {
+        foodMapper.deleteFoodById(tbFood);
+    }
 }

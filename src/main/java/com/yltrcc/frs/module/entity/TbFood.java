@@ -1,6 +1,7 @@
 package com.yltrcc.frs.module.entity;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 public class TbFood {
 
@@ -18,6 +19,41 @@ public class TbFood {
   private long likeCount;
   private long collectCount;
   private long commentCount;
+  private Long shopId;
+  private Long price;
+  private Long category_id;
+
+  public String getFood_cal() {
+    return food_cal;
+  }
+
+  public void setFood_cal(String food_cal) {
+    this.food_cal = food_cal;
+  }
+
+  public Long getShopId() {
+    return shopId;
+  }
+
+  public void setShopId(Long shopId) {
+    this.shopId = shopId;
+  }
+
+  public Long getPrice() {
+    return price;
+  }
+
+  public void setPrice(Long price) {
+    this.price = price;
+  }
+
+  public Long getCategory_id() {
+    return category_id;
+  }
+
+  public void setCategory_id(Long category_id) {
+    this.category_id = category_id;
+  }
 
   public long getFood_id() {
     return food_id;
