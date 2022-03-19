@@ -7,11 +7,14 @@ import com.yltrcc.frs.module.entity.TbCategory;
 import com.yltrcc.frs.module.entity.TbComment;
 import com.yltrcc.frs.module.entity.content;
 import com.yltrcc.frs.service.ITbCommentService;
+import com.yltrcc.frs.utils.ViolationDetectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +36,9 @@ public class CommentApiController {
     @RequestMapping("/getComment")
     public ApiResponse<TbComment> getComment(CommentRequest commentRequest) {
 
+        if (commentRequest.getType() == null) {
+            commentRequest.setType("1");
+        }
 
         List<TbComment> list = commentService.getComment(commentRequest);
 
@@ -48,22 +54,21 @@ public class CommentApiController {
     @RequestMapping("/saveComment")
     public ApiResponse<TbComment> saveComment(TbComment tbComment) {
 
-
-        Integer index = commentService.saveComment(tbComment);
-
-        if (index == 1) {
-            List<TbComment> list = new ArrayList<>();
-            content<TbComment> content = new content<>(list);
-            ApiResponse<TbComment> response = new ApiResponse<TbComment>(content);
-            response.setSuccess(true);
-            return response;
+        //评论检测
+        String comment = tbComment.getComment();
+        if (ViolationDetectionUtils.exeDetection(comment)) {
+            tbComment.setType("1");
         }else {
-            List<TbComment> list = new ArrayList<>();
-            content<TbComment> content = new content<>(list);
-            ApiResponse<TbComment> response = new ApiResponse<TbComment>(content);
-            response.setSuccess(false);
-            return response;
+            tbComment.setType("0");
         }
+        tbComment.setCreateTime( new Date());
+       commentService.saveComment(tbComment);
+
+        List<TbComment> list = new ArrayList<>();
+        content<TbComment> content = new content<>(list);
+        ApiResponse<TbComment> response = new ApiResponse<TbComment>(content);
+        response.setSuccess(true);
+        return response;
 
 
 

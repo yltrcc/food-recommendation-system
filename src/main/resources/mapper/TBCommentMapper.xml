@@ -21,10 +21,10 @@
                 user_id = #{userId}
             </if>
             <if test="type != null">
-                AND type like #{type}
+                AND type = #{type}
             </if>
             <if test="foodId != null">
-                AND food_id like #{foodId}
+                AND food_id = #{foodId}
             </if>
         </where>
     </select>
@@ -48,9 +48,9 @@
         insert into
             tb_comment (comment, user_id, food_id,create_time, user_name, avatar_url,shop_id,type)
         values
-            (#{comment,jdbcType=VARCHAR}, #{user_id,jdbcType=INTEGER}, #{food_id,jdbcType=INTEGER},
-            #{create_time,jdbcType=TIMESTAMP}, #{user_name,jdbcType=VARCHAR}, #{avatar_url,jdbcType=VARCHAR},
-            #{shop_id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
+            (#{comment,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{foodId,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP}, #{userName,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR},
+            #{shopId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
     </insert>
 
 
