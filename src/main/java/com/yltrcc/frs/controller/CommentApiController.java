@@ -70,8 +70,6 @@ public class CommentApiController {
         response.setSuccess(true);
         return response;
 
-
-
     }
 
 
