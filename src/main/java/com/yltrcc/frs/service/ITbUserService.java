@@ -19,4 +19,7 @@ public interface ITbUserService {
 
     List<TbUser> query(UserRequest userRequest);
 
+    List<TbUser> getShopByUserId(UserRequest userRequest);
+
+    int queryShopCountByUserId(UserRequest userRequest);
 }

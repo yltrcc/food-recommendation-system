@@ -60,4 +60,27 @@
 		</if>
 	</update>
 
+	<!-- 管理员登录 -->
+	<select id="getShopByUserId" resultMap="AllMap" parameterType="com.yltrcc.frs.module.ShopRequest">
+		SELECT
+		tbo.*,
+		tbs.*
+		FROM
+		tb_order tbo
+		LEFT JOIN tb_shop tbs ON tbo.order_shop_id = tbs.id
+		WHERE
+		tbo.order_user_id = #{userId}
+		limit #{page_num},#{page_size}
+	</select>
+
+	<!-- 管理员登录 -->
+	<select id="queryShopCountByUserId" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.ShopRequest">
+		SELECT
+		count(*)
+		FROM
+		tb_order tbo
+		LEFT JOIN tb_shop tbs ON tbo.order_shop_id = tbs.id
+		WHERE
+		tbo.order_user_id = #{userId}
+	</select>
 </mapper>

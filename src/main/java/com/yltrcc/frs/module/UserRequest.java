@@ -16,6 +16,16 @@ public class UserRequest extends ApiRequest {
      */
     private String nickName;
 
+    private Long shopId;
+
+    public Long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Long shopId) {
+        this.shopId = shopId;
+    }
+
     public String getNickName() {
         return nickName;
     }

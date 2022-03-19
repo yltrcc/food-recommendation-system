@@ -52,5 +52,17 @@ public class TbShopServiceImpl implements ITbShopService {
          shopMapper.updateShopById(shopRequest);
     }
 
+    @Override
+    public List<TbShop> getShopByUserId(ShopRequest shopRequest) {
+        int page_num = (shopRequest.getPage_num() - 1) * shopRequest.getPage_size();
+        shopRequest.setPage_num(page_num);
+        return shopMapper.getShopByUserId(shopRequest);
+    }
+
+    @Override
+    public int queryShopCountByUserId(ShopRequest shopRequest) {
+        return shopMapper.queryShopCountByUserId(shopRequest);
+    }
+
 
 }

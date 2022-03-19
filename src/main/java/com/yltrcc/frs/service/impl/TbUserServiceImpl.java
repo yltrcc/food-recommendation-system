@@ -29,5 +29,17 @@ public class TbUserServiceImpl implements ITbUserService {
         return userMapper.query(userRequest);
     }
 
+    @Override
+    public List<TbUser> getShopByUserId(UserRequest userRequest) {
+        int page_num = (userRequest.getPage_num() - 1) * userRequest.getPage_size();
+        userRequest.setPage_num(page_num);
+        return userMapper.getShopByUserId(userRequest);
+    }
+
+    @Override
+    public int queryShopCountByUserId(UserRequest userRequest) {
+        return userMapper.queryShopCountByUserId(userRequest);
+    }
+
 
 }

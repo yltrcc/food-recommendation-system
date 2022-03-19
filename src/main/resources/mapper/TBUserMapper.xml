@@ -7,6 +7,8 @@
 		<result column="user_name" jdbcType="VARCHAR" property="user_name"/>
 		<result column="user_type" jdbcType="VARCHAR" property="user_type"/>
 		<result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+		<result column="user_portrait" jdbcType="VARCHAR" property="userPortrait"/>
+		<result column="user_info" jdbcType="VARCHAR" property="userInfo"/>
 
 	</resultMap>
 
@@ -17,6 +19,28 @@
 		where wx_nickname = #{nickName}
 	</select>
 
+	<!-- 管理员登录 -->
+	<select id="getShopByUserId" resultMap="AllMap" parameterType="com.yltrcc.frs.module.UserRequest">
+		SELECT
+			tbo.*,
+			tbu.*
+		FROM
+			tb_order tbo
+			LEFT JOIN tb_user tbu ON tbo.order_user_id = tbu.user_id
+		WHERE
+			tbo.order_shop_id = #{shopId}
+		limit #{page_num},#{page_size}
+	</select>
 
+	<!-- 管理员登录 -->
+	<select id="queryShopCountByUserId" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.UserRequest">
+		SELECT
+			count(*)
+		FROM
+			tb_order tbo
+			LEFT JOIN tb_user tbu ON tbo.order_user_id = tbu.user_id
+		WHERE
+			tbo.order_shop_id = #{shopId}
+	</select>
 
 </mapper>

@@ -27,4 +27,8 @@ public interface TbShopMapper {
     TbShop getShopById(ShopRequest shopRequest);
 
     void updateShopById(ShopRequest shopRequest);
+
+    List<TbShop>  getShopByUserId(ShopRequest shopRequest);
+
+    int queryShopCountByUserId(ShopRequest shopRequest);
 }

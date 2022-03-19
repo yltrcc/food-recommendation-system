@@ -45,13 +45,24 @@ public class UserApiController {
     @RequestMapping("/api/getUserByShopId")
     public ApiResponse<TbUser> getUserByShopId(UserRequest userRequest) {
 
+        int page_size = userRequest.getPage_size();
+        int page_num = userRequest.getPage_num();
 
-        //TbUser tbUser = tbUserService.getUserByShopId(userRequest);
+        List<TbUser> list = tbUserService.getShopByUserId(userRequest);
 
-
-        ArrayList<TbUser> list = new ArrayList<TbUser>();
-        //list.add(tbUser);
+        //查询总记录数
+        int total_count = tbUserService.queryShopCountByUserId(userRequest);
+        int total_page = total_count / page_size;
+        total_page = (int) Math.floor(total_page);
+        if (total_count % page_size != 0) {
+            total_page += 1;
+            total_page = (int) Math.ceil(total_page);
+        }
         content<TbUser> content = new content<>(list);
+        content.setCurrent_page(page_num);
+        content.setPage_size(page_size);
+        content.setTotal_count(total_count);
+        content.setTotal_page(total_page);
         ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
         response.setSuccess(true);
 
