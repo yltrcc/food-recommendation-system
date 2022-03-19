@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 19/03/2022 14:01:18
+ Date: 19/03/2022 17:18:44
 */
 
 SET NAMES utf8mb4;
@@ -108,18 +108,18 @@ CREATE TABLE `tb_food`  (
   `location` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `recorde` int(11) NULL DEFAULT NULL,
   `add_time` datetime(0) NULL DEFAULT NULL,
-  `user_id` int(11) NOT NULL COMMENT '创建用户主键',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '创建用户主键',
   `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '食物图片',
   `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '食物描述',
-  `canteen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '食堂',
-  `like_count` int(10) UNSIGNED NOT NULL COMMENT '点赞数',
-  `collect_count` int(10) UNSIGNED NOT NULL COMMENT '收藏数',
-  `comment_count` int(10) UNSIGNED NOT NULL COMMENT '评论数',
-  `shop_id` int(11) NULL DEFAULT NULL COMMENT '商家ID',
+  `canteen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '食堂',
+  `like_count` int(11) NOT NULL COMMENT '点赞数',
+  `collect_count` int(11) NOT NULL COMMENT '收藏数',
+  `comment_count` int(11) NOT NULL COMMENT '评论数',
+  `shop_id` int(11) NOT NULL COMMENT '商家ID',
   `price` int(11) NOT NULL COMMENT '食物价格',
   `category_id` int(11) NOT NULL COMMENT '商家菜品分类ID',
   PRIMARY KEY (`food_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of tb_food
@@ -130,6 +130,7 @@ INSERT INTO `tb_food` VALUES (3, '羊肉粉', '100KJ', '酸、甜', '二食堂�
 INSERT INTO `tb_food` VALUES (4, '羊肉粉', '100KJ', '酸、甜', '二食堂一楼', NULL, '2021-05-08 13:04:45', 1, 'https://inews.gtimg.com/newsapp_bt/0/14017146688/1000', '北京烤鸭，果木炭火烤制，色泽红润，肉质肥而不腻。', '食悦阁', 0, 0, 0, 3, 0, 0);
 INSERT INTO `tb_food` VALUES (5, '马玉涛麻辣烫', '200KJ', '清汤、辣', '二食堂二楼', NULL, '2021-05-08 13:06:24', 1, 'https://inews.gtimg.com/newsapp_bt/0/14017146688/1000', '北京烤鸭，果木炭火烤制，色泽红润，肉质肥而不腻。', '仙炙轩餐厅', 1, 1, 0, 1, 0, 0);
 INSERT INTO `tb_food` VALUES (6, '马玉涛麻辣烫', '200KJ', '清汤、辣', '二食堂二楼', NULL, '2021-05-08 13:06:24', 1, 'https://inews.gtimg.com/newsapp_bt/0/14017146688/1000', '北京烤鸭，果木炭火烤制，色泽红润，肉质肥而不腻。', '食悦阁', 0, 0, 0, 3, 0, 0);
+INSERT INTO `tb_food` VALUES (7, '烤鸡腿', '100KJ', '123', '123', 0, '2022-03-19 16:46:04', 0, 'https://inews.gtimg.com/newsapp_bt/0/14017146688/1000', '琵琶腿，入口饱满', NULL, 0, 0, 0, 1, 123, 0);
 
 -- ----------------------------
 -- Table structure for tb_like
@@ -256,8 +257,8 @@ CREATE TABLE `tb_user`  (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES (1, '王丽', 'wangli', 'abcdef', '女', '商家', '17723409875', 0, '2021-05-08 13:00:28', '', '1', 1, 'https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132', '施工方对人体黄金分割行分割');
-INSERT INTO `tb_user` VALUES (2, '张三', 'zhangsan', '123456', '男', '用户', '13875909988', 0, '2021-05-08 12:56:24', 'yltrcc', '0', NULL, 'https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132', '施工方对人体黄金分割行分割');
+INSERT INTO `tb_user` VALUES (1, '王丽', 'wangli', 'abcdef', '女', '商家', '17723409875', 0, '2021-05-08 13:00:28', 'yltrcc', '1', 1, 'https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132', '施工方对人体黄金分割行分割');
+INSERT INTO `tb_user` VALUES (2, '张三', 'zhangsan', '123456', '男', '用户', '13875909988', 0, '2021-05-08 12:56:24', '', '0', NULL, 'https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132', '施工方对人体黄金分割行分割');
 INSERT INTO `tb_user` VALUES (3, '李四', 'lisi', '123467', '男', '管理', '13908710034', 0, '2021-05-08 12:59:26', '', '2', NULL, 'https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132', '施工方对人体黄金分割行分割');
 
 SET FOREIGN_KEY_CHECKS = 1;
