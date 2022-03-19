@@ -2,18 +2,13 @@ package com.yltrcc.frs.controller;
 
 import com.yltrcc.frs.module.ApiResponse;
 import com.yltrcc.frs.module.ShopRequest;
-import com.yltrcc.frs.module.UserRequest;
-import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.module.entity.TbShop;
-import com.yltrcc.frs.module.entity.TbUser;
 import com.yltrcc.frs.module.entity.content;
 import com.yltrcc.frs.service.ITbShopService;
-import com.yltrcc.frs.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +22,8 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/api/shop")
-public class ShopApiController {
+@RequestMapping("/api/order")
+public class OrderApiController {
 
     @Autowired
     private ITbShopService tbShopService;
@@ -84,22 +79,6 @@ public class ShopApiController {
 
 
         ArrayList<TbShop> list = new ArrayList<TbShop>();
-        content<TbShop> content = new content<>(list);
-        ApiResponse<TbShop> response = new ApiResponse<TbShop>(content);
-        response.setSuccess(true);
-
-        return response;
-    }
-
-    @RequestMapping("/getShopByUserId")
-    public ApiResponse<TbShop> getShopByUserId(ShopRequest shopRequest) {
-
-
-        TbShop tbShop = tbShopService.getShopById(shopRequest);
-
-
-        ArrayList<TbShop> list = new ArrayList<TbShop>();
-        list.add(tbShop);
         content<TbShop> content = new content<>(list);
         ApiResponse<TbShop> response = new ApiResponse<TbShop>(content);
         response.setSuccess(true);

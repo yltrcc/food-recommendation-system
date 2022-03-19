@@ -21,12 +21,13 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
+@RequestMapping("/api/food")
 public class FoodApiController {
 
     @Autowired
     private ITbFoodService tbFoodService;
 
-    @RequestMapping("/api/getFood")
+    @RequestMapping("/getFood")
     public ApiResponse<TbFood> getFood( FoodRequest foodRequest) {
 
         int page_size = foodRequest.getPage_size();
@@ -52,6 +53,5 @@ public class FoodApiController {
 
         return response;
     }
-
 
 }
