@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yltrcc.frs.mapper.TbCategoryMapper">
+
+	<resultMap type="com.yltrcc.frs.module.entity.TbCategory" id="AllMap">
+		<id column="category_id" jdbcType="INTEGER" property="categoryId" />
+		<result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+		<result column="category_describe" jdbcType="VARCHAR" property="categoryDescribe"/>
+		<result column="shop_id" jdbcType="INTEGER" property="shopId"/>
+
+	</resultMap>
+
+	
+	<!-- 管理员登录 -->
+	<select id="getCategoryByShopId" resultMap="AllMap" parameterType="com.yltrcc.frs.module.CategoryRequest">
+		SELECT * FROM tb_category
+		where shop_id = #{shopId}
+	</select>
+
+
+	<!-- 管理员登录 -->
+	<update id="updateCategoryById" parameterType="com.yltrcc.frs.module.CategoryRequest">
+		UPDATE tb_category
+		<set>
+			<if test=' name != null'>
+				category_name = #{name,jdbcType=VARCHAR},
+			</if>
+		</set>
+
+		<if test=' id != null'>
+			where category_id = #{id}
+		</if>
+	</update>
+
+</mapper>
