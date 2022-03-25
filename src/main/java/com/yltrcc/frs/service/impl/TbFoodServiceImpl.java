@@ -1,6 +1,8 @@
 package com.yltrcc.frs.service.impl;
 
 import com.yltrcc.frs.module.FoodRequest;
+import com.yltrcc.frs.module.entity.Menu;
+import com.yltrcc.frs.module.entity.TbCategory;
 import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.mapper.TbFoodMapper;
 import com.yltrcc.frs.service.ITbFoodService;
@@ -49,5 +51,11 @@ public class TbFoodServiceImpl  implements ITbFoodService {
     @Override
     public void deleteFoodById(TbFood tbFood) {
         foodMapper.deleteFoodById(tbFood);
+    }
+
+    @Override
+    public List<Menu> queryByCategoryId(TbCategory tbCategory) {
+
+        return foodMapper.queryByCategoryId(tbCategory);
     }
 }

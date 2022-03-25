@@ -14,6 +14,16 @@
 		<result column="recorde" jdbcType="BIGINT" property="recorde"/>
 		<result column="taste" jdbcType="VARCHAR" property="taste"/>
 	</resultMap>
+
+	<resultMap type="com.yltrcc.frs.module.entity.Menu" id="MenuMap">
+		<id column="food_id" jdbcType="INTEGER" property="id" />
+		<result column="food_name" jdbcType="VARCHAR" property="name"/>
+		<result column="img" jdbcType="VARCHAR" property="img"/>
+<!--		<result column="info" jdbcType="VARCHAR" property="spec"/>-->
+		<result column="price" jdbcType="INTEGER" property="price"/>
+	</resultMap>
+
+
 	
 	<resultMap type="com.yltrcc.frs.module.entity.TbFood" id="AllHouseMap">
 		<id column="h_id" jdbcType="INTEGER" property="hID" />
@@ -112,4 +122,13 @@
 		delete from tb_food where food_id = #{food_id}
 	</delete>
 
+	<!-- 管理员登录 -->
+	<select id="queryByCategoryId" resultMap="MenuMap" parameterType="com.yltrcc.frs.module.entity.TbCategory">
+		SELECT *
+		FROM tb_food
+		<if test=' categoryId != null'>
+			where category_id = #{categoryId}
+		</if>
+
+	</select>
 </mapper>

@@ -1,6 +1,8 @@
 package com.yltrcc.frs.mapper;
 
 import com.yltrcc.frs.module.FoodRequest;
+import com.yltrcc.frs.module.entity.Menu;
+import com.yltrcc.frs.module.entity.TbCategory;
 import com.yltrcc.frs.module.entity.TbFood;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +21,6 @@ public interface TbFoodMapper {
 	void updateFoodById(TbFood tbFood);
 
 	void deleteFoodById(TbFood tbFood);
+
+    List<Menu> queryByCategoryId(TbCategory tbCategory);
 }
