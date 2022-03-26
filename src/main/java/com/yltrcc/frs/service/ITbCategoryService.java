@@ -29,4 +29,6 @@ public interface ITbCategoryService {
 
     void updateCategoryById(CategoryRequest categoryRequest);
 
+    void saveCategory(TbCategory tbCategory);
+
 }

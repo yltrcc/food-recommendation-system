@@ -4,10 +4,7 @@ import com.yltrcc.frs.module.ApiResponse;
 import com.yltrcc.frs.module.CategoryRequest;
 import com.yltrcc.frs.module.ShopRequest;
 import com.yltrcc.frs.module.UserRequest;
-import com.yltrcc.frs.module.entity.TbCategory;
-import com.yltrcc.frs.module.entity.TbShop;
-import com.yltrcc.frs.module.entity.TbUser;
-import com.yltrcc.frs.module.entity.content;
+import com.yltrcc.frs.module.entity.*;
 import com.yltrcc.frs.service.ITbCategoryService;
 import com.yltrcc.frs.service.ITbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,6 +57,20 @@ public class CategoryApiController {
         ApiResponse<TbCategory> response = new ApiResponse<TbCategory>(content);
         response.setSuccess(true);
 
+        return response;
+    }
+
+    @RequestMapping("/saveCategory")
+    public ApiResponse<TbCategory> saveCategory(TbCategory tbCategory) {
+
+
+        tbCategory.setCategoryDescribe("一个人也要享受生活");
+        categoryService.saveCategory(tbCategory);
+
+        List<TbCategory> list = new ArrayList<>();
+        content<TbCategory> content = new content<>(list);
+        ApiResponse<TbCategory> response = new ApiResponse<TbCategory>(content);
+        response.setSuccess(true);
         return response;
     }
 

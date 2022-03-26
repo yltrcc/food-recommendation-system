@@ -55,4 +55,9 @@ public class TbCategoryServiceImpl implements ITbCategoryService {
     public void updateCategoryById(CategoryRequest categoryRequest) {
         categoryMapper.updateCategoryById(categoryRequest);
     }
+
+    @Override
+    public void saveCategory(TbCategory tbCategory) {
+        categoryMapper.saveCategory(tbCategory);
+    }
 }

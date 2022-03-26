@@ -32,4 +32,15 @@
 		</if>
 	</update>
 
+
+	<insert id="saveCategory" parameterType="com.yltrcc.frs.module.entity.TbCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            tb_category ( category_name, category_describe, shop_id)
+        values
+            (
+				#{categoryName,jdbcType=VARCHAR}, #{categoryDescribe,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}
+            )
+    </insert>
+
+
 </mapper>

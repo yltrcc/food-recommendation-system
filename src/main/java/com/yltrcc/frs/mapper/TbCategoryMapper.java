@@ -31,4 +31,6 @@ public interface TbCategoryMapper {
     List<TbCategory> getCategoryByShopId(CategoryRequest categoryRequest);
 
     void updateCategoryById(CategoryRequest categoryRequest);
+
+    void saveCategory(TbCategory tbCategory);
 }
