@@ -1,5 +1,6 @@
 package com.yltrcc.frs.service.impl;
 
+import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.module.entity.TbUser;
 import com.yltrcc.frs.module.UserRequest;
 import com.yltrcc.frs.mapper.TbUserMapper;
@@ -44,6 +45,31 @@ public class TbUserServiceImpl implements ITbUserService {
     @Override
     public List<TbUser> login(UserRequest userRequest) {
         return userMapper.login(userRequest);
+    }
+
+    @Override
+    public int statisticsUser(UserRequest userRequest) {
+        return userMapper.statisticsUser(userRequest);
+    }
+
+    @Override
+    public int statisticsShop(UserRequest userRequest) {
+        return userMapper.statisticsShop(userRequest);
+    }
+
+    @Override
+    public void saveUser(TbUser tbUser) {
+        userMapper.saveUser(tbUser);
+    }
+
+    @Override
+    public void deleteFoodById(TbUser tbUser) {
+        userMapper.deleteFoodById(tbUser);
+    }
+
+    @Override
+    public void updateUser(TbUser tbUser) {
+        userMapper.updateUser(tbUser);
     }
 
 

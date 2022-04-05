@@ -1,6 +1,7 @@
 package com.yltrcc.frs.module.entity;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class TbUser {
 
@@ -12,12 +13,21 @@ public class TbUser {
   private String identity;
   private String tel;
   private long state;
-  private java.sql.Timestamp addTime;
+  private Date addTime;
   private String wxNickname;
   private String user_type;
   private Long shopId;
   private String userPortrait;
   private String userInfo;
+  private Integer count;
+
+  public Integer getCount() {
+    return count;
+  }
+
+  public void setCount(Integer count) {
+    this.count = count;
+  }
 
   public String getUserPortrait() {
     return userPortrait;
@@ -123,11 +133,11 @@ public class TbUser {
     this.state = state;
   }
 
-  public Timestamp getAddTime() {
+  public Date getAddTime() {
     return addTime;
   }
 
-  public void setAddTime(Timestamp addTime) {
+  public void setAddTime(Date addTime) {
     this.addTime = addTime;
   }
 

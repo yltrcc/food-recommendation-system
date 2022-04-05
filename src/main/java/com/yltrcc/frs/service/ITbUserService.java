@@ -1,5 +1,6 @@
 package com.yltrcc.frs.service;
 
+import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.module.entity.TbUser;
 import com.yltrcc.frs.module.UserRequest;
 
@@ -24,4 +25,14 @@ public interface ITbUserService {
     int queryShopCountByUserId(UserRequest userRequest);
 
     List<TbUser> login(UserRequest userRequest);
+
+    int statisticsUser(UserRequest userRequest);
+
+    int statisticsShop(UserRequest userRequest);
+
+    void saveUser(TbUser tbUser);
+
+    void deleteFoodById(TbUser tbUser);
+
+    void updateUser(TbUser tbUser);
 }

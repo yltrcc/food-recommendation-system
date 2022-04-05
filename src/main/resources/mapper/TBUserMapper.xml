@@ -16,10 +16,29 @@
 	
 	<!-- 管理员登录 -->
 	<select id="query" resultMap="AllMap" parameterType="com.yltrcc.frs.module.UserRequest">
-		SELECT user_id, user_name, user_type, shop_id FROM tb_user
-		where wx_nickname = #{nickName}
+		SELECT * FROM tb_user
+		<if test=' nickName != null'>
+			where wx_nickname = #{nickName}
+		</if>
+		<if test=' type != null'>
+			where user_type = #{type}
+		</if>
 	</select>
 
+	<!-- 管理员登录 -->
+	<select id="statisticsUser" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.UserRequest">
+		SELECT count(user_id) FROM tb_user
+		<if test=' type != null'>
+			where user_type = #{type}
+		</if>
+	</select>
+	<!-- 管理员登录 -->
+	<select id="statisticsShop" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.UserRequest">
+		SELECT count(user_id) FROM tb_user
+		<if test=' type != null'>
+			where user_type = #{type}
+		</if>
+	</select>
 
 	<!-- 管理员登录 -->
 	<select id="login" resultMap="AllMap" parameterType="com.yltrcc.frs.module.UserRequest">
@@ -49,5 +68,46 @@
 		WHERE
 			tbo.order_shop_id = #{shopId}
 	</select>
+
+	<insert id="saveUser" parameterType="com.yltrcc.frs.module.entity.TbUser" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            tb_user (user_name, pwd, tel,add_time, user_type, user_info, user_portrait)
+        values
+            (#{user_name,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR},
+            #{addTime,jdbcType=TIMESTAMP}, #{user_type,jdbcType=VARCHAR}, #{userInfo,jdbcType=VARCHAR}
+            , #{userPortrait,jdbcType=VARCHAR}
+            )
+    </insert>
+
+	<delete id="deleteFoodById" parameterType="com.yltrcc.frs.module.entity.TbUser" flushCache="true" statementType="PREPARED" timeout="20">
+		delete from tb_user where user_id = #{user_id}
+	</delete>
+
+
+	<!-- 管理员登录 -->
+	<update id="updateUser" parameterType="com.yltrcc.frs.module.entity.TbUser">
+		UPDATE tb_user
+		<set>
+			<if test=' user_name != null'>
+				user_name = #{user_name,jdbcType=VARCHAR},
+			</if>
+			<if test=' pwd != null'>
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test=' tel != null'>
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test=' user_type != null'>
+				user_type = #{user_type,jdbcType=VARCHAR},
+			</if>
+			<if test=' userInfo != null'>
+				user_info = #{userInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+
+		<if test=' user_id != null'>
+			where user_id = #{user_id}
+		</if>
+	</update>
 
 </mapper>

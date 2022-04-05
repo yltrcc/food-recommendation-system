@@ -22,6 +22,16 @@ public class UserRequest extends ApiRequest {
 
     private String passwd;
 
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getUsername() {
         return username;
     }

@@ -1,17 +1,16 @@
 package com.yltrcc.frs.controller;
 
 import com.yltrcc.frs.module.ShopRequest;
-import com.yltrcc.frs.module.entity.TbShop;
-import com.yltrcc.frs.module.entity.TbUser;
+import com.yltrcc.frs.module.entity.*;
 import com.yltrcc.frs.service.ITbUserService;
 import com.yltrcc.frs.module.UserRequest;
 import com.yltrcc.frs.module.ApiResponse;
-import com.yltrcc.frs.module.entity.content;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -80,5 +79,78 @@ public class UserApiController {
         ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
         response.setSuccess(true);
         return response;
+    }
+
+    @RequestMapping("/api/statisticsUser")
+    public ApiResponse<TbUser> statisticsUser(UserRequest userRequest) {
+
+        userRequest.setType("0");
+        int userCount = tbUserService.statisticsUser(userRequest);
+        TbUser user = new TbUser();
+        user.setCount(userCount);
+        List<TbUser> list = new ArrayList<>();
+        list.add(user);
+        content<TbUser> content = new content<>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+    @RequestMapping("/api/statisticsShop")
+    public ApiResponse<TbUser> statisticsShop(UserRequest userRequest) {
+        userRequest.setType("1");
+        int shopCount = tbUserService.statisticsShop(userRequest);
+        TbUser user = new TbUser();
+        user.setCount(shopCount);
+        List<TbUser> list = new ArrayList<>();
+        list.add(user);
+        content<TbUser> content = new content<>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+
+    @RequestMapping("/api/saveUser")
+    public ApiResponse<TbUser> saveUser(TbUser tbUser) {
+
+        tbUser.setAddTime(new Date());
+        tbUser.setUserPortrait("https://thirdwx.qlogo.cn/mmopen/vi_32/gFyat8RanSGowFN0twibBfCUI42uqelMs5kyoMd0rib6JMM7pC7pibSAUV8AR3KfyTic4FQiaObyuGvw8NchPJz2HmA/132");
+        tbUserService.saveUser(tbUser);
+
+        List<TbUser> list = new ArrayList<>();
+        content<TbUser> content = new content<TbUser>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+    @RequestMapping("/api/updateUser")
+    public ApiResponse<TbUser> updateUser(TbUser tbUser) {
+
+        tbUserService.updateUser(tbUser);
+
+        List<TbUser> list = new ArrayList<>();
+        content<TbUser> content = new content<TbUser>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+    @RequestMapping("/api/deleteFoodById")
+    public ApiResponse<TbUser> deleteFoodById(TbUser tbUser) {
+
+        tbUserService.deleteFoodById(tbUser);
+
+        List<TbUser> list = new ArrayList<>();
+        content<TbUser> content = new content<>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+
     }
 }
