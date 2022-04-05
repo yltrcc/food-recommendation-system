@@ -41,5 +41,10 @@ public class TbUserServiceImpl implements ITbUserService {
         return userMapper.queryShopCountByUserId(userRequest);
     }
 
+    @Override
+    public List<TbUser> login(UserRequest userRequest) {
+        return userMapper.login(userRequest);
+    }
+
 
 }

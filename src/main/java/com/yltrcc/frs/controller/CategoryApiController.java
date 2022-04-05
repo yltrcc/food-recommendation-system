@@ -74,4 +74,17 @@ public class CategoryApiController {
         return response;
     }
 
+    @RequestMapping("/deleteCategoryById")
+    public ApiResponse<TbCategory> deleteCategoryById(TbCategory tbCategory) {
+
+
+        categoryService.deleteCategoryById(tbCategory);
+
+        List<TbCategory> list = new ArrayList<>();
+        content<TbCategory> content = new content<>(list);
+        ApiResponse<TbCategory> response = new ApiResponse<TbCategory>(content);
+        response.setSuccess(true);
+        return response;
+    }
+
 }

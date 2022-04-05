@@ -13,7 +13,25 @@ public class TbShop {
   private long commentCount;
   private String canteen;
   private String notice;
+  private long totalPrice;
+  private String price;
 
+  public String getPrice() {
+    return price;
+  }
+
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
+  public long getTotalPrice() {
+
+    return totalPrice;
+  }
+
+  public void setTotalPrice(long totalPrice) {
+    this.totalPrice = totalPrice;
+  }
 
   public long getId() {
     return id;

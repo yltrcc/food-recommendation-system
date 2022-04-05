@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yltrcc.frs.mapper.TbOrderMapper">
+
+    <resultMap type="com.yltrcc.frs.module.entity.TbOrder" id="AllMap">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="order_user_id" jdbcType="INTEGER" property="orderUserId"/>
+        <result column="order_shop_id" jdbcType="INTEGER" property="orderShopId"/>
+        <result column="total_price" jdbcType="INTEGER" property="totalPrice"/>
+        <result column="preference" jdbcType="INTEGER" property="preference"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+
+    </resultMap>
+
+
+    <insert id="saveOrder" parameterType="com.yltrcc.frs.module.entity.TbOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into
+            tb_order (order_user_id, order_shop_id, preference,timestamp, total_price, state)
+        values
+            (#{orderUserId,jdbcType=INTEGER}, #{orderShopId,jdbcType=INTEGER}, #{preference,jdbcType=INTEGER},
+            #{timestamp,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <!-- 管理员登录 -->
+    <select id="statisticsOrder" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.entity.TbOrder">
+        SELECT sum(total_price)
+        FROM tb_order
+        <if test=' orderShopId != null'>
+            where order_shop_id = #{orderShopId}
+        </if>
+    </select>
+
+</mapper>

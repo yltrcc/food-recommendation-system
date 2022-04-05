@@ -25,4 +25,6 @@ public interface TbUserMapper {
     List<TbUser> getShopByUserId(UserRequest userRequest);
 
     int queryShopCountByUserId(UserRequest userRequest);
+
+    List<TbUser> login(UserRequest userRequest);
 }

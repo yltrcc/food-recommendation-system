@@ -42,5 +42,8 @@
             )
     </insert>
 
+	<delete id="deleteCategoryById" parameterType="com.yltrcc.frs.module.entity.TbCategory" flushCache="true" statementType="PREPARED" timeout="20">
+		delete from tb_category where category_id = #{categoryId}
+	</delete>
 
 </mapper>

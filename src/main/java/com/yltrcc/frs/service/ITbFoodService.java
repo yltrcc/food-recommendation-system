@@ -29,4 +29,6 @@ public interface ITbFoodService {
 
     List<Menu> queryByCategoryId(TbCategory tbCategory);
 
+    TbFood getFoodById(TbFood tbFood);
+
 }

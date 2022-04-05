@@ -91,6 +91,20 @@ public class FoodApiController {
 
     }
 
+    @RequestMapping("/getFoodById")
+    public ApiResponse<TbFood> getFoodById(TbFood tbFood) {
+
+        TbFood food = tbFoodService.getFoodById(tbFood);
+
+        List<TbFood> list = new ArrayList<>();
+        list.add(food);
+        content<TbFood> content = new content<>(list);
+        ApiResponse<TbFood> response = new ApiResponse<TbFood>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
     @RequestMapping("/deleteFoodById")
     public ApiResponse<TbFood> deleteFoodById(TbFood tbFood) {
 

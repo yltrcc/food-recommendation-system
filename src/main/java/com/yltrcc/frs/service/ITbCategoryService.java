@@ -31,4 +31,5 @@ public interface ITbCategoryService {
 
     void saveCategory(TbCategory tbCategory);
 
+    void deleteCategoryById(TbCategory tbCategory);
 }

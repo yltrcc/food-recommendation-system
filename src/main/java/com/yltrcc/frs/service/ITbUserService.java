@@ -22,4 +22,6 @@ public interface ITbUserService {
     List<TbUser> getShopByUserId(UserRequest userRequest);
 
     int queryShopCountByUserId(UserRequest userRequest);
+
+    List<TbUser> login(UserRequest userRequest);
 }

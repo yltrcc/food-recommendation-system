@@ -25,4 +25,5 @@ public interface TbCommentMapper {
 
     Integer saveComment(TbComment tbComment);
 
+    void deleteFoodById(TbComment tbComment);
 }

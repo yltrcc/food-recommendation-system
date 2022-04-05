@@ -69,4 +69,16 @@ public class UserApiController {
         return response;
     }
 
+
+    @RequestMapping("/api/login")
+    public ApiResponse<TbUser> login(UserRequest userRequest) {
+
+
+        List<TbUser> list = tbUserService.login(userRequest);
+
+        content<TbUser> content = new content<>(list);
+        ApiResponse<TbUser> response = new ApiResponse<TbUser>(content);
+        response.setSuccess(true);
+        return response;
+    }
 }

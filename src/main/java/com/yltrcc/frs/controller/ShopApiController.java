@@ -116,6 +116,13 @@ public class ShopApiController {
         int page_num = shopRequest.getPage_num();
 
         List<TbShop> list = tbShopService.getShopByUserId(shopRequest);
+        List<TbShop> list1 = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(list)) {
+            for (TbShop shop: list) {
+                shop.setPrice("金额：" + shop.getTotalPrice() + "元");
+                list1.add(shop);
+            }
+        }
 
         //查询总记录数
         int total_count = tbShopService.queryShopCountByUserId(shopRequest);
@@ -125,7 +132,7 @@ public class ShopApiController {
             total_page += 1;
             total_page = (int) Math.ceil(total_page);
         }
-        content<TbShop> content = new content<>(list);
+        content<TbShop> content = new content<>(list1);
         content.setCurrent_page(page_num);
         content.setPage_size(page_size);
         content.setTotal_count(total_count);

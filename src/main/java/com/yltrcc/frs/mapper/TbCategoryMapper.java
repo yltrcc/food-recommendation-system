@@ -33,4 +33,6 @@ public interface TbCategoryMapper {
     void updateCategoryById(CategoryRequest categoryRequest);
 
     void saveCategory(TbCategory tbCategory);
+
+    void deleteCategoryById(TbCategory tbCategory);
 }

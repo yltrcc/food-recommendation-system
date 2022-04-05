@@ -23,4 +23,6 @@ public interface TbFoodMapper {
 	void deleteFoodById(TbFood tbFood);
 
     List<Menu> queryByCategoryId(TbCategory tbCategory);
+
+	TbFood getFoodById(TbFood tbFood);
 }

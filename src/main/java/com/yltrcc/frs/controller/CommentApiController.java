@@ -5,6 +5,7 @@ import com.yltrcc.frs.module.CategoryRequest;
 import com.yltrcc.frs.module.CommentRequest;
 import com.yltrcc.frs.module.entity.TbCategory;
 import com.yltrcc.frs.module.entity.TbComment;
+import com.yltrcc.frs.module.entity.TbFood;
 import com.yltrcc.frs.module.entity.content;
 import com.yltrcc.frs.service.ITbCommentService;
 import com.yltrcc.frs.utils.ViolationDetectionUtils;
@@ -63,6 +64,19 @@ public class CommentApiController {
         }
         tbComment.setCreateTime( new Date());
        commentService.saveComment(tbComment);
+
+        List<TbComment> list = new ArrayList<>();
+        content<TbComment> content = new content<>(list);
+        ApiResponse<TbComment> response = new ApiResponse<TbComment>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+    @RequestMapping("/deleteFoodById")
+    public ApiResponse<TbComment> deleteFoodById(TbComment tbComment) {
+
+        commentService.deleteFoodById(tbComment);
 
         List<TbComment> list = new ArrayList<>();
         content<TbComment> content = new content<>(list);

@@ -14,6 +14,7 @@
 		<result column="comment_count" jdbcType="INTEGER" property="commentCount"/>
 		<result column="canteen" jdbcType="VARCHAR" property="canteen"/>
 		<result column="notice" jdbcType="VARCHAR" property="notice"/>
+		<result column="total_price" jdbcType="INTEGER" property="totalPrice"/>
 
 	</resultMap>
 
@@ -70,6 +71,7 @@
 		LEFT JOIN tb_shop tbs ON tbo.order_shop_id = tbs.id
 		WHERE
 		tbo.order_user_id = #{userId}
+		order by tbs.id
 		limit #{page_num},#{page_size}
 	</select>
 

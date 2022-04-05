@@ -2,14 +2,19 @@ package com.yltrcc.frs.controller;
 
 import com.yltrcc.frs.module.ApiResponse;
 import com.yltrcc.frs.module.ShopRequest;
+import com.yltrcc.frs.module.entity.TbComment;
+import com.yltrcc.frs.module.entity.TbOrder;
 import com.yltrcc.frs.module.entity.TbShop;
 import com.yltrcc.frs.module.entity.content;
+import com.yltrcc.frs.service.ITbOrderService;
 import com.yltrcc.frs.service.ITbShopService;
+import com.yltrcc.frs.utils.ViolationDetectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +32,24 @@ public class OrderApiController {
 
     @Autowired
     private ITbShopService tbShopService;
+
+    @Autowired
+    private ITbOrderService tbOrderService;
+
+    @RequestMapping("/saveOrder")
+    public ApiResponse<TbOrder> saveOrder(TbOrder tbOrder) {
+
+        tbOrder.setTimestamp(new Date().getDate());
+        tbOrderService.saveOrder(tbOrder);
+
+        List<TbOrder> list = new ArrayList<>();
+        content<TbOrder> content = new content<>(list);
+        ApiResponse<TbOrder> response = new ApiResponse<TbOrder>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
 
     @RequestMapping("/getShop")
     public ApiResponse<TbShop> getShop(ShopRequest shopRequest) {
@@ -85,4 +108,21 @@ public class OrderApiController {
 
         return response;
     }
+
+    @RequestMapping("/statisticsOrder")
+    public ApiResponse<TbOrder> statisticsOrder(TbOrder tbOrder) {
+
+        int totalPrice = tbOrderService.statisticsOrder(tbOrder);
+        TbOrder order = new TbOrder();
+        order.setTotalPrice(totalPrice);
+        List<TbOrder> list = new ArrayList<>();
+        list.add(order);
+        content<TbOrder> content = new content<>(list);
+        ApiResponse<TbOrder> response = new ApiResponse<TbOrder>(content);
+        response.setSuccess(true);
+        return response;
+
+    }
+
+
 }

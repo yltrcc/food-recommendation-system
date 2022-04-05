@@ -39,4 +39,9 @@ public class TbCommentServiceImpl implements ITbCommentService {
     public Integer saveComment(TbComment tbComment) {
         return commentMapper.saveComment(tbComment);
     }
+
+    @Override
+    public void deleteFoodById(TbComment tbComment) {
+        commentMapper.deleteFoodById(tbComment);
+    }
 }

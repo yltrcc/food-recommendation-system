@@ -60,4 +60,10 @@ public class TbCategoryServiceImpl implements ITbCategoryService {
     public void saveCategory(TbCategory tbCategory) {
         categoryMapper.saveCategory(tbCategory);
     }
+
+    @Override
+    public void deleteCategoryById(TbCategory tbCategory) {
+        categoryMapper.deleteCategoryById(tbCategory);
+
+    }
 }

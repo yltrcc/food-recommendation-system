@@ -58,4 +58,9 @@ public class TbFoodServiceImpl  implements ITbFoodService {
 
         return foodMapper.queryByCategoryId(tbCategory);
     }
+
+    @Override
+    public TbFood getFoodById(TbFood tbFood) {
+        return foodMapper.getFoodById(tbFood);
+    }
 }

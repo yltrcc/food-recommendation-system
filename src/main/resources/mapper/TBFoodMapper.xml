@@ -23,29 +23,10 @@
 		<result column="price" jdbcType="INTEGER" property="price"/>
 	</resultMap>
 
-
-	
-	<resultMap type="com.yltrcc.frs.module.entity.TbFood" id="AllHouseMap">
-		<id column="h_id" jdbcType="INTEGER" property="hID" />
-		<result column="house_desc" jdbcType="VARCHAR" property="houseDesc"/>
-		<result column="house_model" jdbcType="VARCHAR" property="houseModel"/>
-		<result column="house_area" jdbcType="VARCHAR" property="houseArea"/>
-		<result column="house_floor" jdbcType="VARCHAR" property="houseFloor"/>
-		<result column="house_type" jdbcType="VARCHAR" property="houseType"/>
-		<result column="house_price" jdbcType="VARCHAR" property="housePrice"/>
-		<result column="house_address" jdbcType="VARCHAR" property="houseAddress"/>
-		<result column="house_image" jdbcType="VARCHAR" property="houseImage"/>
-		<result column="community_name" jdbcType="VARCHAR" property="communityName"/>
-		<result column="house_linkman" jdbcType="VARCHAR" property="houseLinkMan"/>
-		<result column="house_oriented" jdbcType="VARCHAR" property="houseOriented"/>
-		<result column="house_detailes_img" jdbcType="VARCHAR" property="houseDetailsImg"/>
-		<result column="publisher" jdbcType="VARCHAR" property="publisher"/>
-		<result column="publish_time" jdbcType="VARCHAR" property="publishTime"/>
-	</resultMap>
 	
 	<!-- 管理员登录 -->
 	<select id="query" resultMap="AllUserMap" parameterType="com.yltrcc.frs.module.FoodRequest">
-		SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, img, info, canteen
+		SELECT *
 		FROM tb_food
 		<if test=' canteen != null'>
 			where canteen = #{canteen}
@@ -55,6 +36,17 @@
 		</if>
 		limit #{page_num},#{page_size}
 	</select>
+
+
+	<!-- 管理员登录 -->
+	<select id="getFoodById" resultMap="AllUserMap" parameterType="com.yltrcc.frs.module.entity.TbFood">
+		SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, img, info, canteen
+		FROM tb_food
+		<if test=' food_id != null'>
+			where food_id = #{food_id}
+		</if>
+	</select>
+
 
 	<!-- 管理员登录 -->
 	<select id="queryCount" resultType="java.lang.Integer" parameterType="com.yltrcc.frs.module.FoodRequest">

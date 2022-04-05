@@ -24,4 +24,5 @@ public interface ITbCommentService {
 
     Integer saveComment(TbComment tbComment);
 
+    void deleteFoodById(TbComment tbComment);
 }

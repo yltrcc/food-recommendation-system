@@ -53,5 +53,9 @@
             #{shopId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR})
     </insert>
 
+    <delete id="deleteFoodById" parameterType="com.yltrcc.frs.module.entity.TbComment" flushCache="true" statementType="PREPARED" timeout="20">
+		delete from tb_comment where id = #{id}
+	</delete>
+
 
 </mapper>

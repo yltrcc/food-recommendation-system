@@ -9,6 +9,7 @@
 		<result column="shop_id" jdbcType="INTEGER" property="shopId"/>
 		<result column="user_portrait" jdbcType="VARCHAR" property="userPortrait"/>
 		<result column="user_info" jdbcType="VARCHAR" property="userInfo"/>
+		<result column="wx_nickname" jdbcType="VARCHAR" property="wxNickname"/>
 
 	</resultMap>
 
@@ -19,6 +20,12 @@
 		where wx_nickname = #{nickName}
 	</select>
 
+
+	<!-- 管理员登录 -->
+	<select id="login" resultMap="AllMap" parameterType="com.yltrcc.frs.module.UserRequest">
+		SELECT * FROM tb_user
+		where user_name = #{username} and pwd =  #{passwd}
+	</select>
 	<!-- 管理员登录 -->
 	<select id="getShopByUserId" resultMap="AllMap" parameterType="com.yltrcc.frs.module.UserRequest">
 		SELECT
